@@ -1,30 +1,35 @@
-# CodeAlpha_NetworkSniffer
 # Basic Network Sniffer
 
-## Objective
+## Overview
 
-The objective of this project is to capture and analyze live network 
-packets using Python and Scapy, and to understand how data flows 
-through a network at the protocol level.
+The objective of this project is to build a real-time packet 
+capturing tool using Python and Scapy that helps visualize 
+how network communication works at the packet level, including 
+protocol identification and traffic analysis.
 
-## Tools Used
+## Technologies & Libraries
 
 - Python 3
-- Scapy
-- Npcap (Windows Packet Capture Driver) / libpcap (Linux)
+- Scapy Library
+- Npcap (Windows) / libpcap (Linux/macOS)
+- Command Line / Terminal
 
-## Features
+## Capabilities
 
-- Captures live network packets in real time
-- Displays source and destination IP addresses
-- Identifies protocol type (TCP, UDP, ICMP)
-- Shows source and destination port numbers
-- Displays packet length and payload preview
-- Supports BPF filters (e.g. capture only HTTP or DNS)
-- Optional session logging to a text file
+- Listens on any available network interface
+- Captures and parses TCP, UDP and ICMP packets
+- Extracts and displays source IP, destination IP and ports
+- Shows packet size and a decoded payload preview
+- BPF filter support to target specific traffic
+- Saves captured session to a log file
 
-## How to Run
+## Installation & Usage
 
 ```bash
 pip install scapy
-sudo python3 sniffer.py -i eth0
+
+# Basic capture on wlan0
+sudo python3 sniffer.py -i wlan0
+
+# Capture only DNS traffic and save to file
+sudo python3 sniffer.py -i wlan0 -f "udp port 53" -o log.txt
